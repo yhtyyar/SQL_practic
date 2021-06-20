@@ -1,0 +1,25 @@
+
+
+CREATE TABLE IF NOT EXISTS courses (
+    STUDENT VARCHAR(255) NOT NULL,
+    CLASS VARCHAR(255) NOT NULL
+);
+
+TRUNCATE TABLE courses;
+
+INSERT INTO courses(STUDENT, CLASS)
+VALUES ('A', 'Math'),
+       ('B', 'English'),
+       ('C', 'Math'),
+       ('D', 'Biology'),
+       ('E', 'Math'),
+       ('F', 'Computer'),
+       ('G', 'Math'),
+       ('H', 'Math'),
+       ('I', 'Math');
+
+
+SELECT CLASS
+FROM courses
+GROUP BY CLASS
+HAVING COUNT(*) > 5;

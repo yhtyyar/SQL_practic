@@ -1,0 +1,30 @@
+
+
+CREATE TABLE person
+(
+   PERSON_ID  INT          NOT NULL,
+   FIRST_NAME VARCHAR(255) NOT NULL,
+   LAST_NAME  VARCHAR(255) NOT NULL,
+   PRIMARY KEY (PERSON_ID)
+);
+
+CREATE TABLE address
+(
+   ADDRESS_ID INT          NOT NULL,
+   PERSON_ID  INT          NOT NULL,
+   CITY       VARCHAR(255) NOT NULL,
+   STATE      VARCHAR(255) NOT NULL,
+   PRIMARY KEY (ADDRESS_ID)
+);
+
+INSERT INTO person
+VALUES (1, 'Wang', 'Allen');
+
+INSERT INTO address
+VALUES (1, 2, 'New York City', 'New York');
+
+
+SELECT FIRST_NAME, LAST_NAME, CITY, STATE
+FROM person
+        LEFT JOIN address
+                  ON person.PERSON_ID = address.PERSON_ID;

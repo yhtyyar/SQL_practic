@@ -1,0 +1,32 @@
+
+
+CREATE TABLE IF NOT EXISTS employee
+(
+    ID         INT          NOT NULL,
+    NAME       VARCHAR(255) NOT NULL,
+    SALARY     INT          NOT NULL,
+    MANAGER_ID INT DEFAULT NULL,
+    PRIMARY KEY (ID)
+);
+
+TRUNCATE TABLE employee;
+
+
+INSERT INTO employee(ID, NAME, SALARY, MANAGER_ID)
+VALUES (1, 'Joe', 70000, 3),
+             (2, 'Henry', 80000, 4),
+             (3, 'Sam', 60000, NULL),
+             (4, 'Max', 90000, NULL);
+
+
+SELECT a.NAME AS Employee
+FROM employee AS a
+     INNER JOIN employee AS  b  ON   a.MANAGER_ID  =  b.ID
+WHERE a.SALARY > b.SALARY;
+
+
+SELECT a.NAME AS Employee
+FROM employee AS a
+WHERE a.SALARY > (SELECT b.SALARY
+                                 FROM employee AS b
+                                     WHERE a.MANAGER_ID = b.ID);
